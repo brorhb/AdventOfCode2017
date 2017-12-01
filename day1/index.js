@@ -7,8 +7,8 @@ For example:
 - 91212129 produces 9 because the only digit that matches the next one is the last    digit, 9.
 */
 
-function solveCapcha (capcha) {
-  var number = capcha
+function solveCapcha () {
+  var number = document.getElementById('input').value
   var numbers = []
   var last = 0
   var current = 0

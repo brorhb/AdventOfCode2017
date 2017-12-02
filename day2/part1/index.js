@@ -15,22 +15,21 @@ var input = `1208	412	743	57	1097	53	71	1029	719	133	258	69	1104	373	367	365
 2290	157	2759	3771	4112	2063	153	3538	3740	130	3474	1013	180	2164	170	189
 525	1263	146	954	188	232	1019	918	268	172	1196	1091	1128	234	650	420`
 
-var input2 = `5195
-753
-2468`
+var input2 = `5 9 2 8
+9 4 7 3
+3 8 6 5`
 
 var array = []
 var rows = []
 var sum = 0
+var even = 0
 var diff
+var num = 0
+var highnum = 0
 
 function calculate () {
   array = input.split(/\t|\n|''/)
   for (var i = 0; i < array.length; i++) {
-    console.log('Number', array[i])
-    console.log('Max', Math.max(...array[i]))
-    console.log('Min', Math.min(...array[i]))
-    console.log('Diff', Math.max(...array[i]) - Math.min(...array[i]))
     sum += Math.max(...array[i]) - Math.min(...array[i])
   }
   console.log(sum)
@@ -45,6 +44,31 @@ function calculate2 () {
     sum += diff
   }
   console.log(sum)
+}
+
+function moduloFun () {
+  array = input.split(/\n/)
+  for (var row = 0; row < array.length; row++) {
+    highnum = 0
+    rows = array[row].split(' ')
+    rows = rows.map(row => row.split('\t').map(Number).sort((x, y) => y - x))
+    for (var i = 0; i < rows[0].length; i++) {
+      num = parseInt(rows[0][i])
+      for (var o = 0; o < rows[0][o]; o++) {
+        if (num !== rows[0][o] && (num % rows[0][o] === 0 || rows[0][o] % num === 0)) {
+          if (highnum === 0) {
+            highnum = num
+            console.log('highnum', highnum)
+          } else {
+            even = highnum / num
+            console.log('even', even)
+          }
+        }
+      }
+    }
+    sum += even
+    console.log('sum', sum)
+  }
 }
 
 // Hint

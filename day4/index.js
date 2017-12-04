@@ -511,26 +511,34 @@ cbok koumkad otpozb pqcs emilpe wpcyvxd bock
 spjb xkkak anuvk ejoklh nyerw bsjp zxuq vcwitnd xxtjmjg zfgq xkpf
 juo pmiyoh xxk myphio ogfyf dovlmwm moevao qqxidn`
 
-
 var input = ''
 var input2 = ``
 var array = []
 var duplicate = 0
 var valid = 0
 
-function init () {
+function init1 () {
   if (document.getElementById('input').value === '') {
     input = puzzleinput
-    check(input)
+    check1(input)
   } else {
     input = document.getElementById('input').value
-    check(input)
+    check1(input)
   }
 }
 
-function check (data) {
-  array = data.split(/\n/).map((line) => line.split(/\s+/).sort())
-  console.log(array)
+function init2 () {
+  if (document.getElementById('input').value === '') {
+    input = puzzleinput
+    check2(input)
+  } else {
+    input = document.getElementById('input').value
+    check2(input)
+  }
+}
+
+function check1 (data) {
+  array = data.split(/\n/).map((line) => line.split(/\s+/).map((word) => word.split('').sort()).sort())
   for (var x = 0; x < array.length; x++) {
     var isDuplicate = false
     for (var y = 0; y < array[x].length; y++) {
@@ -542,7 +550,25 @@ function check (data) {
       duplicate++
     }
   }
-  console.log(duplicate)
   valid = array.length - duplicate
+  document.getElementById('output').innerText = 'number of valid phrases = ' + valid
+  console.log(valid)
+}
+
+function check2 (data) {
+  array = data.split(/\n/).map((line) => line.split(/\s+/).map((word) => word.split('').sort().join('')).sort())
+  for (var x = 0; x < array.length; x++) {
+    var isDuplicate = false
+    for (var y = 0; y < array[x].length; y++) {
+      if (array[x][y] === array[x][y - 1]) {
+        isDuplicate = true
+      }
+    }
+    if (isDuplicate) {
+      duplicate++
+    }
+  }
+  valid = array.length - duplicate
+  document.getElementById('output').innerText = 'number of valid phrases = ' + valid
   console.log(valid)
 }

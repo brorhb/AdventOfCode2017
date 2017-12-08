@@ -1054,9 +1054,10 @@ cntj (57)`
 
 function part1 () {
   var objects = input.split(/\n/)
-    .map((s) => /(.+)(\s\(\d+\)\s->\s)(.+)/g.exec(s))
+    .map((s) => /(\w+)\s\((\d+)\)(\s(->)\s(.+))?/.exec(s))
     .filter((parent) => parent != null)
-    .map((a) => ({ parent: a[1], children: a[3].split(', ') }))
+    .map((a) => ({ parent: a[1], weight: a[2], children: a[5] ? a[5].split(', ') : false }))
+  console.log(objects)
   var children = objects.map((children) => children.children)
   var mergedChildren = [].concat.apply([], children)
   var parent = objects.map((parent) => parent.parent.concat())
@@ -1064,12 +1065,6 @@ function part1 () {
 }
 
 function part2 () {
-  var objects = input.split(/\n/)
-    .map((s) => /(.+)(\s\(\d+\)\s->\s)(.+)/g.exec(s))
-    .filter((parent) => parent != null)
-    .map((a) => ({ parent: a[1], children: a[3].split(', ') }))
-  var children = objects.map((children) => children.children)
-  var mergedChildren = [].concat.apply([], children)
-  var parent = objects.map((parent) => parent.parent.concat())
-  var parentOverAllParents = parent.some(s => mergedChildren.indexOf(s) === -1 ? console.log(s) : null)
 }
+
+part1()

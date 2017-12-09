@@ -1013,7 +1013,7 @@ var varList = action.map((vars) => ({var: vars.v, value: 0}))
   .filter((e, i, a) => (a.indexOf(e) === i))
 var uniq = new Set(varList.map(e => JSON.stringify(e)))
 var varArr = Array.from(uniq).map(e => (JSON.parse(e))).sort().map((v) => eval(v.var + '=' + v.value))
-var vars = Array.from(uniq).map(e => (JSON.parse(e)))//.sort().map((v) => eval(v.var + '=' + v.value))
+var vars = Array.from(uniq).map(e => (JSON.parse(e)))
 var max = 0
 
 function part1 () {

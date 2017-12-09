@@ -1014,6 +1014,7 @@ var varList = action.map((vars) => ({var: vars.v, value: 0}))
 var uniq = new Set(varList.map(e => JSON.stringify(e)))
 var varArr = Array.from(uniq).map(e => (JSON.parse(e))).sort().map((v) => eval(v.var + '=' + v.value))
 var vars = Array.from(uniq).map(e => (JSON.parse(e)))//.sort().map((v) => eval(v.var + '=' + v.value))
+var max = 0
 
 function part1 () {
   var value = 0
@@ -1022,12 +1023,17 @@ function part1 () {
       if (action[i].d === '+=') {
         eval(action[i].v + '+=' + action[i].b)
         value = eval(action[i].v)
+        if (value > max) max = value
         vars.filter((e) => e.var === action[i].v).map((e) => e.value = value)
       } else {
         eval(action[i].v + '-=' + action[i].b)
+        value = eval(action[i].v)
+        if (value > max) max = value
+        vars.filter((e) => e.var === action[i].v).map((e) => e.value = value)
       }
     }
   }
   console.log(vars)
+  console.log(max)
 }
 part1()

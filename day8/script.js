@@ -1034,6 +1034,7 @@ function part1 () {
     }
   }
   console.log(vars)
-  console.log(max)
+  console.log('Biggest variable at end', Math.max.apply(Math, vars.map((e) => e.value)))
+  console.log('Highest value held at any time', max)
 }
 part1()
